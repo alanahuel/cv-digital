@@ -90,12 +90,12 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    role: 'Desarrollo de Software y Automatización',
-    company: "Charly's Way",
-    meta: 'Academia de formación online · Autónomo',
-    period: 'mar. 2026 – actualidad',
+    role: 'Desarrollador y automatización',
+    company: 'Autónomo (freelance)',
+    meta: 'Trabajo por cuenta propia para distintos clientes',
+    period: 'ago. 2025 – actualidad',
     summary:
-      'Desarrollo de software propio y automatización integral de la operativa: producto de generación de vídeo, capa de medición de datos, bots de soporte y automatización del día a día (ver Proyectos).',
+      "Desarrollo de software propio y automatización para distintos clientes. Cliente principal desde mar. 2026: Charly's Way (academia de formación online), donde construí el producto de generación de vídeo, la capa de medición sobre ActiveCampaign y la automatización de la operativa diaria. Para otros clientes, bots de atención al cliente y automatizaciones a medida (ver Proyectos).",
   },
   {
     role: 'Desarrollador',
