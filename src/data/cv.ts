@@ -15,21 +15,77 @@ export const profile = {
     'Desarrollador y automatizador autodidacta, formado en Desarrollo de Aplicaciones Web (DAW). Construyo software propio y automatizaciones que quitan a los equipos el trabajo manual repetitivo. Vengo del no-code (n8n, Make, Airtable) y migro cada vez más a código (Python, JavaScript/Node.js, Astro, Next.js) por mantenibilidad y coste. Busco integrarme como colaborador técnico autónomo en un equipo que construya producto y automatización interna.',
 };
 
+// Frases que rotan en el hero (lo que construyo).
+export const roles = [
+  'automatizaciones que eliminan el trabajo manual',
+  'software propio en Python y Node.js',
+  'bots y sistemas de operativa interna',
+  'productos a partir de plantillas y FFmpeg',
+];
+
 // Mensajes pre-rellenados para los CTA de contacto.
 export const contact = {
   emailSubject: 'Contacto desde tu CV digital',
   emailBody:
-    'Hola Alan,\n\nVi tu CV digital y me gustaría hablar contigo sobre una colaboración.\n\n',
+    'Hola Alan,\n\nVi tu portfolio y me gustaría hablar contigo sobre una colaboración.\n\n',
   whatsappMessage:
-    'Hola Alan, vi tu CV digital y me gustaría hablar contigo sobre una colaboración.',
+    'Hola Alan, vi tu portfolio y me gustaría hablar contigo sobre una colaboración.',
 };
+
+export type Project = {
+  tag: string;
+  title: string;
+  summary: string;
+  detail: string;
+  tech: string[];
+};
+
+// Logros reencuadrados como proyectos (extraídos de la experiencia en Charly's Way).
+export const projects: Project[] = [
+  {
+    tag: 'Producto',
+    title: 'Generación automatizada de vídeo',
+    summary:
+      'Sistema que sustituye el montaje manual por la generación de creatividades a partir de plantillas.',
+    detail:
+      'Construido en Python + FFmpeg. Toma plantillas y produce los vídeos de forma automática, eliminando el cuello de botella del montaje manual. Hoy es la base de un producto propio en desarrollo.',
+    tech: ['Python', 'FFmpeg'],
+  },
+  {
+    tag: 'Datos',
+    title: 'Capa de medición sobre ActiveCampaign',
+    summary:
+      'Métricas que la herramienta no expone de serie, como el rendimiento de la newsletter.',
+    detail:
+      'Construí una capa propia de medición sobre ActiveCampaign para extraer datos que la plataforma no muestra de serie, dando al equipo visibilidad de métricas (rendimiento de newsletter, entre otras) que antes no tenía.',
+    tech: ['ActiveCampaign', 'APIs REST', 'Looker Studio'],
+  },
+  {
+    tag: 'Automatización',
+    title: 'Bots de atención al cliente',
+    summary:
+      'Bots de primer nivel que resuelven peticiones recurrentes de soporte.',
+    detail:
+      'Implementé bots de atención al cliente de primer nivel que resuelven las peticiones más recurrentes de forma autónoma, reduciendo los escalados al equipo de soporte.',
+    tech: ['n8n', 'IA', 'Webhooks'],
+  },
+  {
+    tag: 'Automatización',
+    title: 'Operativa diaria automatizada',
+    summary:
+      'Visualizaciones de datos, envíos de correo por reglas, calendarios y tareas recurrentes.',
+    detail:
+      'Automaticé la operativa del día a día: generación de visualizaciones de datos, envíos de correo basados en reglas, creación de calendarios y tareas recurrentes. Trabajo manual repetitivo que dejó de hacerse a mano.',
+    tech: ['n8n', 'Make', 'Airtable'],
+  },
+];
 
 export type Experience = {
   role: string;
   company: string;
   meta: string;
   period: string;
-  bullets: string[];
+  summary: string;
 };
 
 export const experience: Experience[] = [
@@ -38,30 +94,24 @@ export const experience: Experience[] = [
     company: "Charly's Way",
     meta: 'Academia de formación online · Autónomo',
     period: 'mar. 2026 – actualidad',
-    bullets: [
-      'Desarrollé un sistema propio de producción automatizada de creatividades de vídeo (Python + FFmpeg) que sustituye el montaje manual por generación a partir de plantillas; hoy es la base de un producto propio en desarrollo.',
-      'Construí una capa de medición sobre ActiveCampaign para obtener métricas que la herramienta no expone de serie (rendimiento de newsletter, entre otras), dando al equipo visibilidad de datos que antes no tenía.',
-      'Implementé bots de atención al cliente de primer nivel que resuelven peticiones recurrentes y reducen los escalados al equipo de soporte.',
-      'Automaticé la operativa diaria: visualizaciones de datos, envíos de correo por reglas, generación de calendarios y tareas recurrentes.',
-    ],
+    summary:
+      'Desarrollo de software propio y automatización integral de la operativa: producto de generación de vídeo, capa de medición de datos, bots de soporte y automatización del día a día (ver Proyectos).',
   },
   {
     role: 'Desarrollador',
     company: 'NTT Data',
     meta: 'Consultoría tecnológica',
     period: '2022 – 2023',
-    bullets: [
-      'Mantuve y desarrollé sobre un sistema legacy crítico en lenguaje Natural (mainframe IBM) para la gestión del Síndrome Tóxico, en un entorno corporativo con procesos formales y alta exigencia de rigor.',
-    ],
+    summary:
+      'Mantenimiento y desarrollo sobre un sistema legacy crítico en lenguaje Natural (mainframe IBM) para la gestión del Síndrome Tóxico, en un entorno corporativo con procesos formales y alta exigencia de rigor.',
   },
   {
     role: 'Construcción y hostelería',
     company: 'Empresa familiar y sector servicios',
     meta: 'Oficios de ejecución',
     period: '2018 – 2025',
-    bullets: [
-      'Compaginé obra en la empresa familiar (desde los 14 años en periodos vacacionales; de forma oficial desde 2018) con trabajo en hostelería. Oficios de ejecución exigente que forjaron disciplina, fiabilidad y capacidad de resolver incidencias en tiempo real.',
-    ],
+    summary:
+      'Obra en la empresa familiar (desde los 14 años en periodos vacacionales; oficialmente desde 2018) compaginada con hostelería. Oficios exigentes que forjaron disciplina, fiabilidad y resolución de incidencias en tiempo real.',
   },
 ];
 

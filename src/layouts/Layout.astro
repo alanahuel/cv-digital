@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import ThemeToggle from '../components/ThemeToggle.astro';
+import Navbar from '../components/Navbar.astro';
 import { profile } from '../data/cv';
 
 interface Props {
@@ -63,7 +63,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     />
   </head>
   <body class="min-h-screen antialiased text-slate-700 dark:text-slate-200">
-    <ThemeToggle />
+    <Navbar />
     <slot />
 
     <!-- Revelado de secciones al hacer scroll -->

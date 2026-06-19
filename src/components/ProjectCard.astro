@@ -1,0 +1,70 @@
+---
+import type { Project } from '../data/cv';
+interface Props {
+  project: Project;
+  delay?: number;
+}
+const { project, delay = 0 } = Astro.props;
+---
+
+<details class="proj glass reveal relative" style={`transition-delay:${delay}ms`}>
+  <summary class="flex cursor-pointer flex-col gap-3 p-6">
+    <div class="flex items-center justify-between gap-3">
+      <span class="rounded-full border border-indigo-500/30 bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-indigo-600 dark:border-indigo-400/30 dark:bg-indigo-400/10 dark:text-indigo-300">
+        {project.tag}
+      </span>
+      <svg class="chev h-4 w-4 shrink-0 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+    <h3 class="text-lg font-semibold text-slate-900 dark:text-white">{project.title}</h3>
+    <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{project.summary}</p>
+    <div class="flex flex-wrap gap-1.5">
+      {
+        project.tech.map((t) => (
+          <span class="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-400">
+            {t}
+          </span>
+        ))
+      }
+    </div>
+  </summary>
+  <div class="proj-detail border-t border-slate-200/70 px-6 py-4 text-sm leading-relaxed text-slate-700 dark:border-white/10 dark:text-slate-300">
+    {project.detail}
+  </div>
+</details>
+
+<style>
+  .proj summary {
+    list-style: none;
+  }
+  .proj summary::-webkit-details-marker {
+    display: none;
+  }
+  .proj .chev {
+    transition: transform 0.3s ease;
+  }
+  .proj[open] .chev {
+    transform: rotate(180deg);
+  }
+  .proj-detail {
+    animation: detailIn 0.35s ease;
+  }
+  @keyframes detailIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .proj .chev,
+    .proj-detail {
+      transition: none;
+      animation: none;
+    }
+  }
+</style>
