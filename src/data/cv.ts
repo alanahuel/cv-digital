@@ -157,7 +157,7 @@ export const skills: SkillGroup[] = [
     items: [
       'Airtable (esquemas relacionales, scripts)',
       'ActiveCampaign',
-      'Looker Studio (KPIs)',
+      'Software Propio',
     ],
   },
   {
