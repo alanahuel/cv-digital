@@ -163,7 +163,7 @@ export const skills: SkillGroup[] = [
   {
     label: 'Inteligencia artificial',
     items: [
-      'Desarrollo asistido con IA (Claude Code)',
+      'Desarrollo asistido con IA (Claude Code, Codex)',
       'Integración de modelos en automatizaciones',
     ],
   },
