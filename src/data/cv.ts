@@ -58,7 +58,7 @@ export const projects: Project[] = [
       'Métricas que la herramienta no expone de serie, como el rendimiento de la newsletter.',
     detail:
       'Construí una capa propia de medición sobre ActiveCampaign para extraer datos que la plataforma no muestra de serie, dando al equipo visibilidad de métricas (rendimiento de newsletter, entre otras) que antes no tenía.',
-    tech: ['ActiveCampaign', 'APIs REST', 'Looker Studio'],
+    tech: ['ActiveCampaign', 'APIs REST', 'Software Propio'],
   },
   {
     tag: 'Automatización',
