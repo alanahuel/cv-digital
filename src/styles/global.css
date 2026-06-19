@@ -1,38 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 @import 'tailwindcss';
 
+/* Modo oscuro por clase (.dark en <html>) en lugar de prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Playfair Display', serif;
 }
 
+/* Tema CLARO (por defecto) */
 :root {
+  color-scheme: light;
+  --bg: #f7f8fc;
+  --glow: rgba(99, 102, 241, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-border-hover: rgba(79, 70, 229, 0.28);
+  --glass-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+}
+
+/* Tema OSCURO */
+:root.dark {
   color-scheme: dark;
+  --bg: #020617;
+  --glow: rgba(99, 102, 241, 0.07);
+  --glass-bg: rgba(30, 27, 75, 0.28);
+  --glass-border: rgba(99, 102, 241, 0.14);
+  --glass-border-hover: rgba(129, 140, 248, 0.32);
+  --glass-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 }
 
 html {
   font-family: var(--font-sans);
   scroll-behavior: smooth;
-  background: #020617;
+  background: var(--bg);
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease;
 }
 
-/* Halo de luz superior, sutil, igual que en alannahuel.com */
+/* Halo de luz superior, sutil */
 html::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.07) 0%, transparent 65%);
+  background: radial-gradient(circle at 50% 0%, var(--glow) 0%, transparent 65%);
   pointer-events: none;
   z-index: -1;
+  transition: background 0.4s ease;
 }
 
 body {
   background: transparent;
-  color: rgb(226, 232, 240);
+  transition: color 0.4s ease;
 }
 
 .font-display {
@@ -41,18 +64,24 @@ body {
   line-height: 1.1;
 }
 
-/* Tarjeta de cristal reutilizable */
+/* Tarjeta de cristal reutilizable, adaptada a ambos temas */
 .glass {
-  background: rgba(30, 27, 75, 0.28);
-  border: 1px solid rgba(99, 102, 241, 0.14);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-radius: 1.25rem;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.4s ease;
 }
 
 .glass:hover {
-  border-color: rgba(129, 140, 248, 0.32);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-3px);
 }
 
 /* Línea superior luminosa para tarjetas destacadas */
@@ -66,7 +95,7 @@ body {
   background: linear-gradient(90deg, transparent, rgba(129, 140, 248, 0.5), transparent);
 }
 
-/* Entrada suave al cargar */
+/* Entrada suave al cargar (hero) */
 .fade-up {
   animation: fadeUp 0.7s ease-out both;
 }
@@ -82,16 +111,37 @@ body {
   }
 }
 
+/* Revelado al hacer scroll (IntersectionObserver añade .is-visible) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+::selection {
+  background: rgba(129, 140, 248, 0.3);
+}
+
+/* Accesibilidad: sin movimiento si el usuario lo pide */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .fade-up {
+  .fade-up,
+  .reveal {
     animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
   }
-}
-
-/* Scrollbar discreta */
-::selection {
-  background: rgba(129, 140, 248, 0.3);
+  .glass:hover {
+    transform: none;
+  }
 }
